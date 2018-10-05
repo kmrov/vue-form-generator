@@ -8,7 +8,7 @@
 
 		.combobox.form-control(v-if="!schema.listBox", :disabled="disabled")
 			.mainRow(@click="onExpandCombo", :class="{ expanded: comboExpanded }")
-				.info {{ selectedCount }} selected
+				.info {{ selectedCount }} {{ selectedText }}
 				.arrow
 
 			.dropList
@@ -44,6 +44,13 @@ export default {
 			if (this.value) return this.value.length;
 
 			return 0;
+		},
+
+		selectedText() {
+			if (this.schema && this.schema.selectedText && this.schema.selectedText.length > 0) {
+				return this.schema.selectedText;
+			}
+			return "selected";
 		}
 	},
 
